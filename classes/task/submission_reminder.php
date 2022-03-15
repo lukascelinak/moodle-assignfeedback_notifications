@@ -265,7 +265,7 @@ class submission_reminder extends \core\task\scheduled_task
                         $footer);
                     $plainmaill= strip_tags($htmlmaill);
                     $copyuser = $DB->get_record('user', array('id' => $settings->messagecopyto));
-                    $subjectt=$subject." ({$user->email})";
+                    $subjectt=$subjectadm." ({$user->email})";
                     email_to_user($copyuser, $from, $subjectt, $plainmaill, $htmlmaill);
                 }
                 email_to_user($user, $from, $this->parse_variables($user,$settings->subject), $plainmail, $htmlmail);
