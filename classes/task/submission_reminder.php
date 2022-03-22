@@ -107,10 +107,10 @@ class submission_reminder extends \core\task\scheduled_task
                        ) rainner ON rainner.userid = u.id 
 
                     WHERE e.courseid=:courseid AND ue.status = 0 AND l.id IS NULL AND a.id IS NULL AND UNIX_TIMESTAMP() > ue.timestart+:timeafter 
-                          AND ue.timestart > UNIX_TIMESTAMP(CURDATE())";
+                          AND ue.timestart+:timeafter2 > UNIX_TIMESTAMP(CURDATE())";
 
             $nsuafterparams = ['assigmentid' => $assignment->id,
-                'assigmentid1' => $assignment->id, 'timeafter' => $settings->after,
+                'assigmentid1' => $assignment->id, 'timeafter' => $settings->after,'timeafter2' => $settings->after,
                 'cmid' => $cm->id, 'courseid' => $assignment->course];
             $paramsafter = array_merge($nsuafterparams, $relatedctxparams);
             $nsuafter = $DB->get_records_sql($sql, $paramsafter);
